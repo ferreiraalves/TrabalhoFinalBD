@@ -17,7 +17,8 @@ CREATE TABLE "CLIENT"(
  "DATE_OF_BIRTH" Date NOT NULL,
  "CPF" Character varying NOT NULL,
  "EMAIL" Character varying,
- "PHONE" Bigint
+ "PHONE" Bigint,
+ "PASSWD" Character varying NOT NULL
 )
 ;
 
