@@ -1,40 +1,36 @@
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Iterator;
+import java.util.List;
 
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("Teste");
-		try {
-			Class.forName("org.postgresql.Driver");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("PostgreSQL JDBC Driver Registered!");
-		Connection connection = null;
-
-		try {
-
-			connection = DriverManager.getConnection(
-					"jdbc:postgresql://localhost:5432/trabalho final", "postgres",
-					"606238");
-
-		} catch (SQLException e) {
-
-			System.out.println("Connection Failed! Check output console");
-			e.printStackTrace();
-			return;
-
-		}
-
-		if (connection != null) {
-			System.out.println("You made it, take control your database now!");
-		} else {
-			System.out.println("Failed to make connection!");
-		}
 		
+		//int year = 1953; int month = 10; int day = 01;
+		//Date data = new Date(year-1900,day-1,day);
+		
+		//Client client = new Client("Sandra", "Palmeiras", data ,"123415123", "sandra@email", "103123131", "1234123");
+		
+		//System.out.println(client.getDate_of_birth());
+		ClientDao dao = new ClientDao();
+		
+		//dao.insert(client);
+		
+		List <Client> clients =  dao.getList();
+		
+		for (Client client : clients) {
+			System.out.println("Id: " + client.getId());
+			System.out.println("Nome: " + client.getName());
+			System.out.println("Adress: " + client.getAdress());
+			System.out.println("Date of Birth: " + client.getDate_of_birth());
+			System.out.println("CPF: " + client.getCpf());
+			System.out.println("email: " + client.getPhone());
+			System.out.println("passwd: " + client.getPasswd());
+			System.out.println();
+		}
 		
 		
 	}
