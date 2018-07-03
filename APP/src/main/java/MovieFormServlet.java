@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,16 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/clients")
-public class ClientServlet extends HttpServlet{
-	
+@WebServlet("/new-movie")
+public class MovieFormServlet extends HttpServlet{
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response)
+	protected void service(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
-		ClientDao dao = new ClientDao();
-		List <Client> clients =  dao.getList();
+		PrintWriter out = resp.getWriter();
+		
 		
         out.println("<!DOCTYPE html>");
 		out.println("<html>");
@@ -46,40 +42,35 @@ public class ClientServlet extends HttpServlet{
 		out.println("    justify-content: flex-end;");
 		out.println("  }");
 		out.println("  </style>");
-		out.println("  <title>Clientes</title>");
+		out.println("  <title>New Movie</title>");
 		out.println("</head>");
 		out.println("<body>");
 		out.println("  <div class=\"centeredColumn\">");		
-		out.println("    <img src=\"https://sambatech.com/wp-content/themes/tema-sambatech/home-samba-play-2017/img/logo-sambatech-rodape.png\" alt=\"logo\">");
-		out.println("    <div class=\"\">");
-		out.println("      <a href=\"/\">Home</a>");
-		out.println("      <a href=\"/result\">Catalogo</a>");
+		out.println("    <img src=\"https://cdn.discordapp.com/attachments/404053019827896333/463500783959146499/move.png\" height=\"20%\" width=\"20%\" alt=\"logo\">");		out.println("    <div class=\"\">");
+		out.println("      <a href=\"/APP/\">Home</a>");
+		out.println("      <a href=\"/APP/list-clients\">Clientes</a>");
+		out.println("      <a href=\"/APP/list-employees\">Employees</a>");
+		out.println("      <a href=\"/APP/list-stores\">Stores</a>");
+		out.println("      <a href=\"/APP/list-movies\">Movies</a>");		
 		out.println("    </div>");
 		out.println("  </div>");
-		out.println("  	<h1 id=\"title\" class=\"display-4\" style=\"text-align: center;\">Clientes</h1>");
+		out.println("  	<h1 id=\"title\" class=\"display-4\" style=\"text-align: center;\">New Movie</h1>");
 		out.println("  <div class=\"content centeredColumn\">");
+		out.println("<form action = \"insert-movie\" method = \"POST\">");		
+		out.println("Title: <input type=\"text\" name=\"title\"/><br/ >");
+		out.println("Release: <input type=\"date\" name=\"release_date\"/><br/ >");
+		out.println("Rating: <input type=\"text\" name=\"rating\"/><br/ >");
+		out.println("Director ID: <input type=\"text\" name=\"director_id\"/><br/ >");
+		out.println("<input type=\"submit\" value=\"save\"/><br/ >");
 		
-		for (Client client : clients) {
-			out.println("<div class=\"jumbotron\">");
-            out.println("<p> Id: " + client.getId() + "</p>");
-            out.println("<p> Name: " + client.getName() + "</p>");
-            out.println("<p> Adress: " + client.getAdress() + "</p>");
-            out.println("<p> Date of Birth: " + client.getDate_of_birth() + "</p>");
-            out.println("<p> CPF: " + client.getCpf() + "</p>");
-            out.println("<p> Email: " + client.getEmail() + "</p>");
-            out.println("<p> Phone: " + client.getPhone() + "</p>");
-            out.println("<p> Password: " + client.getPasswd() + "</p>");
-            out.println("</div>");
-		}
-		
+		out.println("</form>");
 		out.println("  </div>");
 		out.println("  </body>");
 		out.println(" </html>");
 		out.close();
 		
 		
-		
-		
-		
 	}
 }
+
+

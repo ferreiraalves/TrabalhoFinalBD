@@ -1,6 +1,7 @@
 import java.sql.Date;
 
-public class Client {
+
+public class Employee {
 	
 	private String name;
 	private int id;
@@ -9,10 +10,9 @@ public class Client {
 	private String cpf;
 	private String email;
 	private String phone;
-	private String passwd;
-
-	public Client(String name, String adress, Date date_of_birth, String cpf, String email, String phone,
-			String passwd) {
+	private int store_id;
+	
+	public Employee(String name, String adress, Date date_of_birth, String cpf, String email, String phone,int store_id) {
 		super();
 		this.name = name;
 		this.adress = adress;
@@ -20,10 +20,10 @@ public class Client {
 		this.cpf = cpf;
 		this.email = email;
 		this.phone = phone;
-		this.passwd = passwd;
+		this.setStore_id(store_id);
 	}
 
-	public Client() {
+	public Employee() {
 		
 	}
 
@@ -74,14 +74,6 @@ public class Client {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
-	public String getPasswd() {
-		return passwd;
-	}
-
-	public void setPasswd(String passwd) {
-		this.passwd = passwd;
-	}
 	
 	public int getId() {
 		return id;
@@ -90,7 +82,14 @@ public class Client {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	
-	
+
+	public int getStore_id() {
+		return store_id;
+	}
+
+	public void setStore_id(int store_id) {
+		this.store_id = store_id;
+	}
+
+
 }
