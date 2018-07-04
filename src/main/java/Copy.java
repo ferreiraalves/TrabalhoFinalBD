@@ -4,6 +4,8 @@ public class Copy {
 	private int movie_id;
 	private int total;
 	private int available;
+	private String adress;
+	private String title;
 	
 	public Copy (){
 		
@@ -39,6 +41,22 @@ public class Copy {
 
 	public void setAvailable(int available) {
 		this.available = available;
+	}
+
+	public String getAdress() {
+		return adress;
+	}
+
+	public void setAdress(String adress) {
+		this.adress = adress;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
 }

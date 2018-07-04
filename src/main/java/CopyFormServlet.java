@@ -1,6 +1,6 @@
+
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,16 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/list-movies")
-public class MovieListServlet extends HttpServlet{
-	
+@WebServlet("/new-copy")
+public class CopyFormServlet extends HttpServlet{
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response)
+	protected void service(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
-		MovieDao dao = new MovieDao();
-		List <Movie> movies =  dao.getList();
+		PrintWriter out = resp.getWriter();
+		
 		
         out.println("<!DOCTYPE html>");
 		out.println("<html>");
@@ -45,21 +42,8 @@ public class MovieListServlet extends HttpServlet{
 		out.println("    align-items: center;");
 		out.println("    justify-content: flex-end;");
 		out.println("  }");
-		out.println("table {");
-		out.println("    font-family: arial, sans-serif;");
-		out.println("    border-collapse: collapse;");
-		out.println("    width: 100%;");
-		out.println("}");
-		out.println("td, th {");
-		out.println("    border: 1px solid #dddddd;");
-		out.println("    text-align: left;");
-		out.println("    padding: 8px;");
-		out.println("}");
-		out.println("tr:nth-child(even) {");
-		out.println("    background-color: #dddddd;");
-		out.println("}");
 		out.println("  </style>");
-		out.println("  <title>Movies</title>");
+		out.println("  <title>New Copy</title>");
 		out.println("</head>");
 		out.println("<body>");
 		out.println("  <div class=\"centeredColumn\">");		
@@ -72,36 +56,21 @@ public class MovieListServlet extends HttpServlet{
 		out.println("      <a href=\"/APP/list-copies\">Copies</a>");
 		out.println("    </div>");
 		out.println("  </div>");
-		out.println("  	<h1 id=\"title\" class=\"display-4\" style=\"text-align: center;\">Movies</h1>");
+		out.println("  	<h1 id=\"title\" class=\"display-4\" style=\"text-align: center;\">New Copy</h1>");
 		out.println("  <div class=\"content centeredColumn\">");
-		out.println("      <a href=\"/APP/new-movie\">New Movie</a>");
-		out.println("   <table>");
-		out.println("   <tr>");
-		out.println("   <th>Id</th>");
-		out.println("   <th>Title</th>");
-		out.println("   <th>Release Date</th>");
-		out.println("   <th>Rating</th>");
-		out.println("   <th>Director_ID</th>");
-		out.println("   </tr>");
+		out.println("<form action = \"insert-copy\" method = \"POST\">");		
+		out.println("Store ID: <input type=\"text\" name=\"store_id\"/><br/ >");
+		out.println("Movie Id: <input type=\"text\" name=\"movie_id\"/><br/ >");
+		out.println("Total Copies: <input type=\"text\" name=\"total\"/><br/ >");
+		out.println("Available Copies: <input type=\"text\" name=\"available\"/><br/ >");
+		out.println("<input type=\"submit\" value=\"save\"/><br/ >");
 		
-		
-		for (Movie movie : movies) {
-			
-			
-			out.println("<tr>");
-            out.println("<td>" + movie.getId() + "</td>");
-            out.println("<td>" + movie.getTitle() + "</td>");
-            out.println("<td>" + movie.getRelease_date() + "</td>");
-            out.println("<td>" + movie.getRating() + "</td>");
-            out.println("<td>" + movie.getDirector_id() + "</td>");
-    		out.println("</tr>");
-
-		}
-		out.println("</table>");
+		out.println("</form>");
 		out.println("  </div>");
 		out.println("  </body>");
 		out.println(" </html>");
 		out.close();
+		
 		
 	}
 }

@@ -17,7 +17,7 @@ private Connection connection;
 	}
 	
 	public void insert(Copy copy) {
-		String sql = "insert into copy " +
+		String sql = "insert into copies " +
 				"(STORE_ID,MOVIE_ID,TOTAL,AVAILABLE)" +
 				"values (?,?,?,?)";
 		try {
@@ -25,7 +25,7 @@ private Connection connection;
 			stmt.setInt(1, copy.getStore_id());
 			stmt.setInt(2, copy.getMovie_id());
 			stmt.setInt(3, copy.getTotal());
-			stmt.setInt(3, copy.getAvailable());
+			stmt.setInt(4, copy.getAvailable());
 			
 			stmt.execute();
 			stmt.close();
@@ -41,7 +41,10 @@ private Connection connection;
 		try {
 			List<Copy> copies = new ArrayList<Copy>();
 			PreparedStatement stmt;
-			stmt = this.connection.prepareStatement("select * from copy");			
+			stmt = this.connection.prepareStatement("select total, available, store_id, adress,movie_id, title\n"
+					+ "from copies\n"
+					+ "join store on copies.store_id = store.id\n"
+					+ "join movie on copies.movie_id = movie.id;");			
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()) {
@@ -50,7 +53,8 @@ private Connection connection;
 				copy.setMovie_id(rs.getInt("movie_id"));
 				copy.setTotal(rs.getInt("total"));
 				copy.setAvailable(rs.getInt("available"));
-				
+				copy.setAdress(rs.getString("adress"));
+				copy.setTitle(rs.getString("title"));
 				
 				copies.add(copy);
 			}

@@ -51,12 +51,13 @@ public class EmployeeFormServlet extends HttpServlet{
 		out.println("      <a href=\"/APP/list-clients\">Clientes</a>");
 		out.println("      <a href=\"/APP/list-employees\">Employees</a>");
 		out.println("      <a href=\"/APP/list-stores\">Stores</a>");
-		out.println("      <a href=\"/APP/list-movies\">Movies</a>");		
+		out.println("      <a href=\"/APP/list-movies\">Movies</a>");
+		out.println("      <a href=\"/APP/list-copies\">Copies</a>");
 		out.println("    </div>");
 		out.println("  </div>");
 		out.println("  	<h1 id=\"title\" class=\"display-4\" style=\"text-align: center;\">New Employee</h1>");
 		out.println("  <div class=\"content centeredColumn\">");
-		out.println("<form action = \"insert-store\" method = \"POST\">");		
+		out.println("<form action = \"insert-employee\" method = \"POST\">");		
 		out.println("Name: <input type=\"text\" name=\"name\"/><br/ >");
 		out.println("Adress: <input type=\"text\" name=\"adress\"/><br/ >");
 		out.println("Nasc: <input type=\"date\" name=\"date_of_birth\"/><br/ >");

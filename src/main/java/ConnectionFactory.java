@@ -11,6 +11,8 @@ public class ConnectionFactory {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			String url = System.getenv("DATABASE_URL");
+			System.out.println(url);
 			return DriverManager.getConnection(
 					"jdbc:postgresql://localhost:5432/trabalhofinal", "postgres",
 					"");

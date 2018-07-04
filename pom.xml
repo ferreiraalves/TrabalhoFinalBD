@@ -2,16 +2,16 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>Lucas</groupId>
-	<artifactId>Conversor1</artifactId>
+	<artifactId>APP</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk -->
+		<!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
 		<dependency>
-			<groupId>com.amazonaws</groupId>
-			<artifactId>aws-java-sdk</artifactId>
-			<version>1.11.297</version>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.1-901-1.jdbc4</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
@@ -27,20 +27,20 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		
+
 		<dependency>
 		    <groupId>com.mashape.unirest</groupId>
 		    <artifactId>unirest-java</artifactId>
 		    <version>1.4.9</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.json/json -->
 		<dependency>
     		<groupId>org.json</groupId>
     		<artifactId>json</artifactId>
     		<version>20180130</version>
 		</dependency>
-	
+
 	</dependencies>
 	<build>
 	<plugins>
@@ -64,7 +64,7 @@
 	                    </configuration>
 	                </execution>
 	            </executions>
-	        </plugin>	
+	        </plugin>
 	</plugins>
 	</build>
 </project>

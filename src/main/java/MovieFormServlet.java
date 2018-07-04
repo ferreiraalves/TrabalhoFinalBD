@@ -51,7 +51,8 @@ public class MovieFormServlet extends HttpServlet{
 		out.println("      <a href=\"/APP/list-clients\">Clientes</a>");
 		out.println("      <a href=\"/APP/list-employees\">Employees</a>");
 		out.println("      <a href=\"/APP/list-stores\">Stores</a>");
-		out.println("      <a href=\"/APP/list-movies\">Movies</a>");		
+		out.println("      <a href=\"/APP/list-movies\">Movies</a>");
+		out.println("      <a href=\"/APP/list-copies\">Copies</a>");
 		out.println("    </div>");
 		out.println("  </div>");
 		out.println("  	<h1 id=\"title\" class=\"display-4\" style=\"text-align: center;\">New Movie</h1>");
