@@ -11,7 +11,7 @@ public class ConnectionFactory {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			String url = System.getenv("DATABASE_URL");
+			String url = System.getenv("JDBC_DATABASE_URL");
 			System.out.println(url);
 			if (url == null){
 				return DriverManager.getConnection(
