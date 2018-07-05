@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -8,16 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/list-movies")
-public class MovieListServlet extends HttpServlet{
+@WebServlet("/list-open-rentals")
+public class RentalListOpenServlet extends HttpServlet{
 	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-		MovieDao dao = new MovieDao();
-		List <Movie> movies =  dao.getList();
+		RentalDao dao = new RentalDao();
+		List <Rental> rentals =  dao.getOpenList();
 		
         out.println("<!DOCTYPE html>");
 		out.println("<html>");
@@ -59,7 +60,7 @@ public class MovieListServlet extends HttpServlet{
 		out.println("    background-color: #dddddd;");
 		out.println("}");
 		out.println("  </style>");
-		out.println("  <title>Movies</title>");
+		out.println("  <title>Rentals</title>");
 		out.println("</head>");
 		out.println("<body>");
 		out.println("  <div class=\"centeredColumn\">");		
@@ -73,29 +74,44 @@ public class MovieListServlet extends HttpServlet{
 		out.println("      <a href=\"/APP/list-rentals\">Rentals</a>");
 		out.println("    </div>");
 		out.println("  </div>");
-		out.println("  	<h1 id=\"title\" class=\"display-4\" style=\"text-align: center;\">Movies</h1>");
+		out.println("  	<h1 id=\"title\" class=\"display-4\" style=\"text-align: center;\">Rentals</h1>");
 		out.println("  <div class=\"content centeredColumn\">");
-		out.println("      <a href=\"/APP/new-movie\">New Movie</a>");
+		out.println("      <a href=\"/APP/list-rentals\">All rentals</a>");
 		out.println("   <table>");
 		out.println("   <tr>");
 		out.println("   <th>Id</th>");
-		out.println("   <th>Title</th>");
-		out.println("   <th>Release Date</th>");
-		out.println("   <th>Rating</th>");
-		out.println("   <th>Director_ID</th>");
+		out.println("   <th>Date of Rental</th>");
+		out.println("   <th>Due Date</th>");
+		out.println("   <th>Date of Delievery</th>");
+		out.println("   <th>Client Name</th>");
+		out.println("   <th>Store Adress</th>");
+		out.println("   <th>Movie Title</th>");
+		out.println("   <th>Delivery</th>");
 		out.println("   </tr>");
 		
 		
-		for (Movie movie : movies) {
+		for (Rental rental : rentals) {
 			
 			
 			out.println("<tr>");
-            out.println("<td>" + movie.getId() + "</td>");
-            out.println("<td>" + movie.getTitle() + "</td>");
-            out.println("<td>" + movie.getRelease_date() + "</td>");
-            out.println("<td>" + movie.getRating() + "</td>");
-            out.println("<td>" + movie.getDirector_id() + "</td>");
-    		out.println("</tr>");
+            out.println("<td>" + rental.getId() + "</td>");
+            out.println("<td>" + rental.getDate_of_rental() + "</td>");
+            out.println("<td>" + rental.getDue_date() + "</td>");
+            out.println("<td>" + rental.getDate_of_delivery() + "</td>");
+            out.println("<td>" + rental.getClient_name() + "</td>");
+            out.println("<td>" + rental.getStore_adress() + "</td>");
+            out.println("<td>" + rental.getMovie_title() + "</td>");
+            if(rental.getDate_of_delivery() == null){
+                out.println("<td>");
+        		out.println("<form action = \"deliver\" method = \"POST\">");
+        		out.println("<input type=\"hidden\" name=\"rental_id\" value=\"" + rental.getId() + "\" />");
+        		out.println("<input type=\"submit\" value=\"Deliver\"/><br/ >");
+                out.println("</td>");
+        		
+            }else{
+            	out.println("<td>Closed</td>");
+            }
+            out.println("</tr>");
 
 		}
 		out.println("</table>");
