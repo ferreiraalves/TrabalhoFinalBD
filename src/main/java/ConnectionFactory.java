@@ -13,9 +13,15 @@ public class ConnectionFactory {
 			}
 			String url = System.getenv("DATABASE_URL");
 			System.out.println(url);
-			return DriverManager.getConnection(
-					"jdbc:postgresql://localhost:5432/trabalhofinal", "postgres",
-					"");
+			if (url == null){
+				return DriverManager.getConnection(
+						"jdbc:postgresql://localhost:5432/trabalhofinal", "postgres",
+						"");
+			}
+			else{
+				return DriverManager.getConnection(url);
+			}
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
